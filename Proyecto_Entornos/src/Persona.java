@@ -3,49 +3,33 @@ import java.util.Scanner;
 
 public class Persona {
 	public static Scanner tec = new Scanner(System.in);
-	private final static String [] gustos_generales = {"futbol", "baloncesto", "tennis", 
-													   "ir al gimnasio", "videojuegos",
-													   "informatica", "series", "peliculas"};
-	private String user_name;
-	private boolean [] gustos_personales = new boolean[6];
-	//Guarda una lista con los nombre introducidos de los usuarios
-	private static ArrayList<Persona> user_name_no_disponibles = new ArrayList<Persona>();
 	
-	public Persona (String Nombre_introducido){
-		//Comprueba si el nombre ya a sido introducion anteriormente 
-		if(!user_name_no_disponibles.contains(Nombre_introducido)) {
-			user_name_no_disponibles.add(new Persona(Nombre_introducido));
-			this.user_name =  Nombre_introducido;
-		}
+	private String nombre;
+	private boolean[] afinidades = new boolean[6];
+	private static ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+	
+	public Persona() {
+		this.nombre = decidirNombre();
+		this.afinidades = decidirAfinidades();
 	}
 
-	public static ArrayList<Persona> getUser_name_no_disponibles() {
-		return user_name_no_disponibles;
-	}
-
-
-	public String getUser_name() {
-		return user_name;
-	}
+	
+	
 	
 
-	public void MytoString() {
-		System.out.print("user_name = " + user_name + "\n" + 
-				"Gustos: ");
-		int Longitud_array = gustos_personales.length -1;
-		for(int i=0; i<=Longitud_array; i++) {
-			if(gustos_personales[i]) {
-				System.out.print( " | " + gustos_generales[i] + " | ");
-			}
-		}
-		System.out.println();
+
+
+	public static void setListaPersonas(ArrayList<Persona> listaPersonas) {
+		Persona.listaPersonas = listaPersonas;
 	}
 
+
+/*
 	public void Compatibilidad(Persona Objetivo) {
 		int Puntos_en_comun=0;
-		int Longitud_array = gustos_personales.length;
+		int Longitud_array = afinidades.length;
 		for(int i=0; i>=Longitud_array; i++ ) {
-			if(this.gustos_personales[i] == Objetivo.gustos_personales[i]) {
+			if(this.afinidades[i] == Objetivo.afinidades[i]) {
 				Puntos_en_comun++;
 			}
 		}
@@ -56,4 +40,85 @@ public class Persona {
 			System.out.println(this.user_name + " y " + Objetivo.user_name + " son compatibles");
 		}
 	}
+	*/
+	public boolean[] decidirAfinidades() {//Crea el array de los gustos Persona00les
+		boolean[] afinidades = new boolean[6];
+		
+		System.out.println("풲e gustan los deportes?");//0
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[0] = true;
+		} else {
+			afinidades[0] = false;
+		}
+		
+		System.out.println("풲e gustan los juegos?");//1
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[1] = true;
+		} else {
+			afinidades[1] = false;
+		}
+		
+		System.out.println("풲e gustan las series?");//2
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[2] = true;
+		} else {
+			afinidades[2] = false;
+		}
+		
+		System.out.println("풲e gustan los animes?");//3
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[3] = true;
+		} else {
+			afinidades[3] = false;
+		}
+		
+		System.out.println("풲e gusta la jardineria?");//4
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[4] = true;
+		} else {
+			afinidades[4] = false;
+		}
+		
+		System.out.println("풲e gustan la informatica?");//5
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[5] = true;
+		} else {
+			afinidades[5] = false;
+		}
+		
+		return afinidades;
+	}
+	
+	public String toString() {
+		return "Nombre: " +nombre+", afinidad 1: "+afinidades[0]+", afinidad 2: "+afinidades[1]+", afinidad 3: "+afinidades[2]+", afinidad 4: "+afinidades[3]+", afinidad 5: "+afinidades[4]+", afinidad 6: "+afinidades[5];
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public boolean[] getAfinidades() {
+		return afinidades;
+	}
+
+
+
+	public void setAfinidades(boolean[] afinidades) {
+		this.afinidades = afinidades;
+	}
+
+
+
+	public static ArrayList<Persona> getListaPersonas() {
+		return listaPersonas;
+	}
+	
 }
