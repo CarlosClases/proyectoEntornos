@@ -8,16 +8,17 @@ public class Persona {
 													   "informatica", "series", "peliculas"};
 	private String user_name;
 	private boolean [] gustos_personales = new boolean[6];
-
+	//Guarda una lista con los nombre introducidos de los usuarios
 	private static ArrayList<String>  user_name_no_disponibles = new ArrayList<String>();
 	
-	public Persona (String Nombre_introducido){
+	public Persona (String Nombre_introducido, boolean []Gustos){
+		//Comprueba si el nombre ya a sido introducion anteriormente 
 		if(!user_name_no_disponibles.contains(Nombre_introducido)) {
 			user_name_no_disponibles.add(Nombre_introducido);
 			this.user_name =  Nombre_introducido;
 		}
+		this.gustos_personales = Gustos;
 	}
-	
 
 	public static ArrayList<String> getUser_name_no_disponibles() {
 		return user_name_no_disponibles;
@@ -27,13 +28,33 @@ public class Persona {
 	public String getUser_name() {
 		return user_name;
 	}
+	
 
-
-	public String toString() {
-		return "Persona [user_name=" + user_name + "]";
+	public void MytoString() {
+		System.out.print("user_name = " + user_name + "\n" + 
+				"Gustos: ");
+		int Longitud_array = gustos_personales.length -1;
+		for(int i=0; i<=Longitud_array; i++) {
+			if(gustos_personales[i]) {
+				System.out.print( " | " + gustos_generales[i] + " | ");
+			}
+		}
+		System.out.println();
 	}
 
-	public void PersonalizarGustos() {
-		System.out.println("¿Te gusta el futbol? SI/NO");
+	public void Compatibilidad(Persona Objetivo) {
+		int Puntos_en_comun=0;
+		int Longitud_array = gustos_personales.length;
+		for(int i=0; i>=Longitud_array; i++ ) {
+			if(this.gustos_personales[i] == Objetivo.gustos_personales[i]) {
+				Puntos_en_comun++;
+			}
+		}
+		if(Puntos_en_comun >= 3) {
+			System.out.println(this.user_name + " y " + Objetivo.user_name + " son compatibles");
+		}
+		else {
+			System.out.println(this.user_name + " y " + Objetivo.user_name + " son compatibles");
+		}
 	}
 }
