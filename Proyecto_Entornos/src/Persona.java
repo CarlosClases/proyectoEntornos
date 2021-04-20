@@ -9,18 +9,17 @@ public class Persona {
 	private String user_name;
 	private boolean [] gustos_personales = new boolean[6];
 	//Guarda una lista con los nombre introducidos de los usuarios
-	private static ArrayList<String>  user_name_no_disponibles = new ArrayList<String>();
+	private static ArrayList<Persona> user_name_no_disponibles = new ArrayList<Persona>();
 	
-	public Persona (String Nombre_introducido, boolean []Gustos){
+	public Persona (String Nombre_introducido){
 		//Comprueba si el nombre ya a sido introducion anteriormente 
 		if(!user_name_no_disponibles.contains(Nombre_introducido)) {
-			user_name_no_disponibles.add(Nombre_introducido);
+			user_name_no_disponibles.add(new Persona(Nombre_introducido));
 			this.user_name =  Nombre_introducido;
 		}
-		this.gustos_personales = Gustos;
 	}
 
-	public static ArrayList<String> getUser_name_no_disponibles() {
+	public static ArrayList<Persona> getUser_name_no_disponibles() {
 		return user_name_no_disponibles;
 	}
 
