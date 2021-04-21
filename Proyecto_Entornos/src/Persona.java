@@ -5,44 +5,44 @@ public class Persona {
 	public static Scanner tec = new Scanner(System.in);
 	
 	private String nombre;
-	private boolean[] afinidades = new boolean[6];
-	private static ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+	private boolean[] afinidades = new boolean[7];
+	private final static ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
 	
 	public Persona() {
 		this.nombre = decidirNombre();
 		this.afinidades = decidirAfinidades();
+		listaPersonas.add(this);
 	}
-
 	
-	
-	
-
-
-
-	public static void setListaPersonas(ArrayList<Persona> listaPersonas) {
-		Persona.listaPersonas = listaPersonas;
-	}
-
-
-/*
-	public void Compatibilidad(Persona Objetivo) {
-		int Puntos_en_comun=0;
-		int Longitud_array = afinidades.length;
-		for(int i=0; i>=Longitud_array; i++ ) {
-			if(this.afinidades[i] == Objetivo.afinidades[i]) {
-				Puntos_en_comun++;
-			}
-		}
-		if(Puntos_en_comun >= 3) {
-			System.out.println(this.user_name + " y " + Objetivo.user_name + " son compatibles");
+	public String decidirNombre() {
+		boolean cerrojo = false;
+		String Nombre_introducido;
+		int numero_lista_persona = listaPersonas.size();
+		System.out.print("Introduce tu nombre: ");
+		//Comprobar si el nombre ya existe
+		if(numero_lista_persona == 0){
+			Nombre_introducido = tec.nextLine();
+			return Nombre_introducido;
 		}
 		else {
-			System.out.println(this.user_name + " y " + Objetivo.user_name + " son compatibles");
+			do {
+				Nombre_introducido = tec.nextLine();
+				for(int i=0; i<=numero_lista_persona -1; ) {
+					if(listaPersonas.get(i).getNombre().equals(Nombre_introducido)){
+						System.out.print("nombre no disponible, introduzca uno nuevo: ");
+						Nombre_introducido = tec.nextLine();
+						i=0;  //Reinicia la busqueda
+					}
+					else {cerrojo = true; i++;}
+				}
+			}
+			while(!cerrojo);
+			return Nombre_introducido;
 		}
 	}
-	*/
+	
 	public boolean[] decidirAfinidades() {//Crea el array de los gustos Persona00les
-		boolean[] afinidades = new boolean[6];
+		boolean[] afinidades = new boolean[7];
 		
 		System.out.println("¿Te gustan los deportes?");//0
 		if (tec.nextLine().equalsIgnoreCase("si")) {
@@ -86,13 +86,46 @@ public class Persona {
 			afinidades[5] = false;
 		}
 		
+		System.out.println("¿Te gustan la Historia?");//5
+		if (tec.nextLine().equalsIgnoreCase("si")) {
+			afinidades[6] = true;
+		} else {
+			afinidades[6] = false;
+		}
 		return afinidades;
 	}
 	
+	public void Compatibilidad(Persona Objetivo) {
+		int Puntos_en_comun=0;
+		int Longitud_array = afinidades.length;
+		for(int i=0; i<=Longitud_array; i++ ) {
+			if(this.afinidades[i] == Objetivo.afinidades[i]) {
+				Puntos_en_comun++;
+			}
+		}
+		if(Puntos_en_comun >= 3) {
+			System.out.println(this.nombre + " y " + Objetivo.nombre + " son compatibles");
+		}
+		else {
+			System.out.println(this.nombre + " y " + Objetivo.nombre + " son compatibles");
+		}
+	}
 	public String toString() {
-		return "Nombre: " +nombre+", afinidad 1: "+afinidades[0]+", afinidad 2: "+afinidades[1]+", afinidad 3: "+afinidades[2]+", afinidad 4: "+afinidades[3]+", afinidad 5: "+afinidades[4]+", afinidad 6: "+afinidades[5];
+		return "Nombre: "+nombre+"\n"+
+				"Afinidades: \n" +
+				"    Deportes: "+afinidades[0]+"\n"+
+				"    Juegos: "+afinidades[1]+"\n"+
+				"    Series: "+afinidades[2]+"\n"+
+				"    Animes: "+afinidades[3]+"\n"+
+				"    Jardineria: "+afinidades[4]+"\n"+
+				"    Informatica: "+afinidades[5]+"\n"+
+				"    Historia: "+afinidades[6];
 	}
 	
+	public static ArrayList<Persona> getListapersonas() {
+		return listaPersonas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
