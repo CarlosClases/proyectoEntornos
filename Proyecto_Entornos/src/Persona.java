@@ -4,41 +4,38 @@ import java.util.Scanner;
 public class Persona {
 	public static Scanner tec = new Scanner(System.in);
 	
+
 	private String nombre;
-	private boolean[] afinidades = new boolean[7];
-	private final static ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+	private boolean[] afinidades = new boolean[6];
 	
-	public Persona() {
-		this.nombre = decidirNombre();
+	public Persona(ArrayList<Persona> listaPersonas) {
+		this.nombre = decidirNombre(listaPersonas);
 		this.afinidades = decidirAfinidades();
 		listaPersonas.add(this);
 	}
+
+	public Persona(String nombre, boolean[] afinidades, ArrayList<Persona> listaPersonas) {
+		this.nombre = nombre;
+		this.afinidades = afinidades;
+		listaPersonas.add(this);
+	}
 	
-	public String decidirNombre() {
-		boolean cerrojo = false;
-		String Nombre_introducido;
-		int numero_lista_persona = listaPersonas.size();
-		System.out.print("Introduce tu nombre: ");
-		//Comprobar si el nombre ya existe
-		if(numero_lista_persona == 0){
-			Nombre_introducido = tec.nextLine();
-			return Nombre_introducido;
+	private String decidirNombre(ArrayList<Persona> listaPersonas) {//Metodo para que el usuario no pueda repetir nombre
+		boolean cerrojo=true;
+		System.out.println("¡Escribe un nombre unico para tu usuario!");
+		nombre=tec.nextLine();
+		for (int i = 0; i < listaPersonas.size()&&cerrojo; i++) {
+			if (listaPersonas.get(i).getNombre().equalsIgnoreCase(nombre)) {
+				do {
+					System.out.println("Ese nombre de usuario ya existe, prueba con otro");
+					nombre=tec.nextLine();
+				} 
+				while (listaPersonas.get(i).getNombre().equalsIgnoreCase(nombre));
+				cerrojo=false;
+			}	
 		}
-		else {
-			do {
-				Nombre_introducido = tec.nextLine();
-				for(int i=0; i<=numero_lista_persona -1; ) {
-					if(listaPersonas.get(i).getNombre().equals(Nombre_introducido)){
-						System.out.print("nombre no disponible, introduzca uno nuevo: ");
-						Nombre_introducido = tec.nextLine();
-						i=0;  //Reinicia la busqueda
-					}
-					else {cerrojo = true; i++;}
-				}
-			}
-			while(!cerrojo);
-			return Nombre_introducido;
-		}
+		
+		return nombre;
 	}
 	
 	public boolean[] decidirAfinidades() {//Crea el array de los gustos Persona00les
@@ -86,12 +83,13 @@ public class Persona {
 			afinidades[5] = false;
 		}
 		
-		System.out.println("¿Te gustan la Historia?");//5
+		System.out.println("¿Te gustan la Historia?");//6
 		if (tec.nextLine().equalsIgnoreCase("si")) {
 			afinidades[6] = true;
 		} else {
 			afinidades[6] = false;
 		}
+		
 		return afinidades;
 	}
 	
@@ -122,10 +120,7 @@ public class Persona {
 				"    Historia: "+afinidades[6];
 	}
 	
-	public static ArrayList<Persona> getListapersonas() {
-		return listaPersonas;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -146,12 +141,6 @@ public class Persona {
 
 	public void setAfinidades(boolean[] afinidades) {
 		this.afinidades = afinidades;
-	}
-
-
-
-	public static ArrayList<Persona> getListaPersonas() {
-		return listaPersonas;
 	}
 	
 }
