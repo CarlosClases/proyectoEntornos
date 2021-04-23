@@ -38,58 +38,39 @@ public class Persona {
 		return nombre;
 	}
 	
-	public boolean[] decidirAfinidades() {//Crea el array de los gustos Persona00les
+	public boolean ResponderSINO() {//Impide al usuario responder cualquier cosa que no sea si o no, devolviendo si le gusta o no
+		boolean sino=true;
+		String respuesta=tec.nextLine();
+		if (!(respuesta.equalsIgnoreCase("si")||respuesta.equalsIgnoreCase("no"))) {
+			do {
+				System.out.println("Por favor responda si o no");
+				respuesta=tec.nextLine();
+			} while (!(respuesta.equalsIgnoreCase("si")||respuesta.equalsIgnoreCase("no")));
+		}
+		if (respuesta.equalsIgnoreCase("no")) {
+			sino = false;
+		}
+		return sino;
+	}
+	
+	public boolean[] decidirAfinidades() {//Crea el array de los gustos Personales
 		boolean[] afinidades = new boolean[7];
 		
 		System.out.println("풲e gustan los deportes?");//0
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[0] = true;
-		} else {
-			afinidades[0] = false;
-		}
-		
+		afinidades[0] = ResponderSINO();
 		System.out.println("풲e gustan los juegos?");//1
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[1] = true;
-		} else {
-			afinidades[1] = false;
-		}
-		
+		afinidades[1] = ResponderSINO();
 		System.out.println("풲e gustan las series?");//2
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[2] = true;
-		} else {
-			afinidades[2] = false;
-		}
-		
+		afinidades[2] = ResponderSINO();
 		System.out.println("풲e gustan los animes?");//3
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[3] = true;
-		} else {
-			afinidades[3] = false;
-		}
-		
+		afinidades[3] = ResponderSINO();
 		System.out.println("풲e gusta la jardineria?");//4
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[4] = true;
-		} else {
-			afinidades[4] = false;
-		}
-		
-		System.out.println("풲e gustan la informatica?");//5
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[5] = true;
-		} else {
-			afinidades[5] = false;
-		}
-		
-		System.out.println("풲e gustan la Historia?");//6
-		if (tec.nextLine().equalsIgnoreCase("si")) {
-			afinidades[6] = true;
-		} else {
-			afinidades[6] = false;
-		}
-		
+		afinidades[4] = ResponderSINO();
+		System.out.println("풲e gusta la informatica?");//5
+		afinidades[5] = ResponderSINO();
+		System.out.println("풲e gusta la Historia?");//6
+		afinidades[6] = ResponderSINO();
+			
 		return afinidades;
 	}
 	

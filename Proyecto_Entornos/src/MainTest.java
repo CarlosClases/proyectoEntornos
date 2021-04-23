@@ -16,6 +16,7 @@ public class MainTest {
 		
 		System.out.println(listaPersonas.get(0));
 		System.out.println(listaPersonas.get(1));
+		System.out.println(listaPersonas.get(2));
 
 	}
 }
