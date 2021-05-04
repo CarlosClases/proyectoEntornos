@@ -76,8 +76,8 @@ public class Persona {
 	
 	public void Compatibilidad(Persona Objetivo) {
 		int Puntos_en_comun=0;
-		int Longitud_array = afinidades.length;
-		for(int i=0; i<=Longitud_array; i++ ) {
+		int Longitud_array_afinidades = afinidades.length;
+		for(int i=0; i<Longitud_array_afinidades; i++ ) {
 			if(this.afinidades[i] == Objetivo.afinidades[i]) {
 				Puntos_en_comun++;
 			}
@@ -86,9 +86,18 @@ public class Persona {
 			System.out.println(this.nombre + " y " + Objetivo.nombre + " son compatibles");
 		}
 		else {
-			System.out.println(this.nombre + " y " + Objetivo.nombre + " son compatibles");
+			System.out.println(this.nombre + " y " + Objetivo.nombre + " no son compatibles");
 		}
 	}
+
+	
+	public void CompatibilidadGlobal(ArrayList<Persona> listaPersonas) {
+		int Longitud_arraylist_personas = listaPersonas.size();
+		for(int j=0; j<Longitud_arraylist_personas; j++) {
+			this.Compatibilidad(listaPersonas.get(j));
+		}
+	}
+	
 	public String toString() {
 		return "Nombre: "+nombre+"\n"+
 				"Afinidades: \n" +
@@ -101,27 +110,19 @@ public class Persona {
 				"    Historia: "+afinidades[6];
 	}
 	
-	
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public boolean[] getAfinidades() {
 		return afinidades;
 	}
 
-
-
 	public void setAfinidades(boolean[] afinidades) {
 		this.afinidades = afinidades;
 	}
-	
 }
