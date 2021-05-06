@@ -2,6 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainTest {
+	static boolean NombreRepetido(ArrayList<Persona> listaPersonas, String Nuevo_nombre) {//Metodo para comprobar si un nombre esta repetido
+		boolean repetido=false;
+		int listaPersona_size = listaPersonas.size();
+		for (int i = 0; i < listaPersona_size && !repetido; i++) {
+			if (listaPersonas.get(i).getNombre().equals(Nuevo_nombre)) {
+				repetido=true;
+			}	
+		}
+		return repetido;
+	}
 	public static Scanner tec = new Scanner(System.in);
 	public static void main(String[] args) {
 		
@@ -19,7 +29,6 @@ public class MainTest {
 		System.out.println(listaPersonas.get(0));
 		System.out.println(listaPersonas.get(1));
 		System.out.println(listaPersonas.get(2));
-		a2.CompatibilidadGlobal(listaPersonas);
-
+		
 	}
 }

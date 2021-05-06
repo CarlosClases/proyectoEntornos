@@ -6,14 +6,14 @@ public class Persona {
 	
 
 	private String nombre;
-	private boolean[] afinidades = new boolean[6];
+	private boolean[] afinidades = new boolean[7];
 	
 	public Persona(ArrayList<Persona> listaPersonas) {
 		this.nombre = decidirNombre(listaPersonas);
 		this.afinidades = decidirAfinidades();
 		listaPersonas.add(this);
 	}
-
+	
 	public Persona(String nombre, boolean[] afinidades, ArrayList<Persona> listaPersonas) {
 		this.nombre = nombre;
 		this.afinidades = afinidades;
@@ -37,7 +37,7 @@ public class Persona {
 		
 		return nombre;
 	}
-	
+
 	public boolean ResponderSINO() {//Impide al usuario responder cualquier cosa que no sea si o no, devolviendo si le gusta o no
 		boolean sino=true;
 		String respuesta=tec.nextLine();
@@ -116,10 +116,6 @@ public class Persona {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public boolean[] getAfinidades() {
-		return afinidades;
 	}
 
 	public void setAfinidades(boolean[] afinidades) {
