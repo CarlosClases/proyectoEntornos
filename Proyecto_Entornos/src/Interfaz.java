@@ -22,6 +22,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Canvas;
 import java.awt.Button;
+import javax.swing.ImageIcon;
+import java.awt.Checkbox;
 
 
 public class Interfaz {
@@ -85,7 +87,7 @@ public class Interfaz {
 		
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.setBounds(100, 100, 660, 492);
+		frame.setBounds(100, 100, 660, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -111,158 +113,89 @@ public class Interfaz {
 		Gustos.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		frame.getContentPane().add(Gustos);
 		
-		JLabel texto_deportes = new JLabel("풲e gustan los deportes?");
-		texto_deportes.setBounds(10, 147, 170, 20);
-		texto_deportes.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_deportes.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_deportes);
+		JLabel Icon_Deportes = new JLabel("");
+		Icon_Deportes.setForeground(Color.BLACK);
+		Icon_Deportes.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Deportes.png")));
+		Icon_Deportes.setBounds(20, 155, 70, 65);
+		Icon_Deportes.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Deportes.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		frame.getContentPane().add(Icon_Deportes);
 		
-		ButtonGroup Grupo_deportes = new ButtonGroup();
+		JLabel Icon_Juegos = new JLabel("");
+		Icon_Juegos.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Juegos.png")));
+		Icon_Juegos.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Juegos.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Juegos.setBounds(120, 150, 70, 65);
+		frame.getContentPane().add(Icon_Juegos);
 		
-		JRadioButton Deportes_si = new JRadioButton("si");
-		Deportes_si.setBounds(180, 147, 45, 20);
-		Deportes_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Deportes_si);
+		Checkbox checkbox_Juegos = new Checkbox("");
+		checkbox_Juegos.setBounds(150, 220, 25, 30);
+		frame.getContentPane().add(checkbox_Juegos);
 		
-		JRadioButton Deportes_no = new JRadioButton("no");
-		Deportes_no.setBounds(230, 147, 45, 20);
-		Deportes_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Deportes_no);
+		Checkbox checkbox_Deportes = new Checkbox("");
+		checkbox_Deportes.setBounds(50, 220, 25, 30);
+		frame.getContentPane().add(checkbox_Deportes);
 		
-		Grupo_deportes.add(Deportes_si);
-		Grupo_deportes.add(Deportes_no);
+		JLabel Icon_Series = new JLabel("");
+		Icon_Series.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Series.png")));
+		Icon_Series.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Series.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Series.setBounds(220, 150, 70, 65);
+		frame.getContentPane().add(Icon_Series);
 		
+		Checkbox checkbox_Series = new Checkbox("");
+		checkbox_Series.setBounds(250, 220, 25, 30);
+		frame.getContentPane().add(checkbox_Series);
 		
-		JLabel texto_juegos = new JLabel("풲e gustan los juegos?");
-		texto_juegos.setBounds(10, 187, 170, 20);
-		texto_juegos.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_juegos.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_juegos);
+		JLabel Icon_Animes = new JLabel("");
+		Icon_Animes.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Animes.png")));
+		Icon_Animes.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Animes.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Animes.setBounds(20, 255, 70, 65);
+		frame.getContentPane().add(Icon_Animes);
 		
-		ButtonGroup Grupo_juegos = new ButtonGroup();
+		Checkbox checkbox_Animes = new Checkbox("");
+		checkbox_Animes.setBounds(50, 320, 25, 30);
+		frame.getContentPane().add(checkbox_Animes);
 		
-		JRadioButton Juegos_si = new JRadioButton("si");
-		Juegos_si.setBounds(180, 187, 45, 20);
-		Juegos_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Juegos_si);
+		JLabel Icon_Jardineria = new JLabel("");
+		Icon_Jardineria.setToolTipText("");
+		Icon_Jardineria.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Jardineria.png")));
+		Icon_Jardineria.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Jardineria.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Jardineria.setBounds(120, 250, 70, 65);
+		frame.getContentPane().add(Icon_Jardineria);
 		
-		JRadioButton Juegos_no = new JRadioButton("no");
-		Juegos_no.setBounds(230, 187, 45, 20);
-		Juegos_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Juegos_no);
+		Checkbox checkbox_Jardineria = new Checkbox("");
+		checkbox_Jardineria.setBounds(145, 320, 25, 30);
+		frame.getContentPane().add(checkbox_Jardineria);
 		
-		Grupo_juegos.add(Juegos_si);
-		Grupo_juegos.add(Juegos_no);
+		JLabel Icon_Informatica = new JLabel("");
+		Icon_Informatica.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Informatica.png")));
+		Icon_Informatica.setToolTipText("");
+		Icon_Informatica.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Informatica.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Informatica.setBounds(220, 250, 70, 65);
+		frame.getContentPane().add(Icon_Informatica);
 		
-		JLabel texto_series = new JLabel("풲e gustan las series?");
-		texto_series.setBounds(10, 227, 170, 20);
-		texto_series.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_series.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_series);
+		Checkbox checkbox_Informatica = new Checkbox("");
+		checkbox_Informatica.setBounds(245, 320, 25, 30);
+		frame.getContentPane().add(checkbox_Informatica);
 		
-		ButtonGroup Grupo_series = new ButtonGroup();
+		JLabel Icon_Historia = new JLabel("");
+		Icon_Historia.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Historia.png")));
+		Icon_Historia.setToolTipText("");
+		Icon_Historia.setHorizontalAlignment(SwingConstants.CENTER);
+		Icon_Historia.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Icon_Historia.setBounds(120, 356, 70, 65);
+		frame.getContentPane().add(Icon_Historia);
 		
-		JRadioButton Series_si = new JRadioButton("si");
-		Series_si.setBounds(180, 227, 45, 20);
-
-		Series_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Series_si);
-		
-		JRadioButton Series_no = new JRadioButton("no");
-		Series_no.setBounds(230, 227, 45, 20);
-		Series_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Series_no);
-		
-		Grupo_series.add(Series_si);
-		Grupo_series.add(Series_no);
-		
-		JLabel texto_animes = new JLabel("풲e gustan los animes?");
-		texto_animes.setBounds(10, 267, 170, 20);
-		texto_animes.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_animes.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_animes);
-		
-		ButtonGroup Grupo_animes = new ButtonGroup();
-		
-		JRadioButton Animes_si = new JRadioButton("si");
-		Animes_si.setBounds(180, 267, 45, 20);
-		Animes_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Animes_si);
-		
-		JRadioButton Animes_no = new JRadioButton("no");
-		Animes_no.setBounds(230, 267, 45, 20);
-		Animes_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Animes_no);
-		
-		Grupo_animes.add(Animes_si);
-		Grupo_animes.add(Animes_no);
-		
-		JLabel texto_jardineria = new JLabel("풲e gusta la jardineria?");
-		texto_jardineria.setBounds(10, 307, 170, 20);
-		texto_jardineria.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_jardineria.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_jardineria);
-		
-		ButtonGroup Grupo_jardineria =  new ButtonGroup();
-		
-		JRadioButton Jardineria_si = new JRadioButton("si");
-		Jardineria_si.setBounds(180, 307, 45, 20);
-		Jardineria_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Jardineria_si);
-		
-		JRadioButton Jardineria_no = new JRadioButton("no");
-		Jardineria_no.setBounds(230, 307, 45, 20);
-		Jardineria_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Jardineria_no);
-		
-		Grupo_jardineria.add(Jardineria_si);
-		Grupo_jardineria.add(Jardineria_no);
-		
-		JLabel texto_informatica = new JLabel("풲e gusta la informatica?");
-		texto_informatica.setBounds(10, 347, 170, 20);
-		texto_informatica.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_informatica.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_informatica);
-		
-		ButtonGroup Grupo_informatica =  new ButtonGroup();
-		
-		JRadioButton Informatica_si = new JRadioButton("si");
-		Informatica_si.setBounds(180, 347, 45, 20);
-		Informatica_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Informatica_si);
-		
-		JRadioButton Informatica_no = new JRadioButton("no");
-		Informatica_no.setBounds(230, 347, 45, 20);
-		Informatica_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Informatica_no);
-		
-		Grupo_informatica.add(Informatica_si);
-		Grupo_informatica.add(Informatica_no);
-		
-		JLabel texto_Historia = new JLabel("풲e gusta la Historia?");
-		texto_Historia.setBounds(10, 387, 170, 20);
-		texto_Historia.setHorizontalAlignment(SwingConstants.CENTER);
-		texto_Historia.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(texto_Historia);
-		
-		ButtonGroup Grupo_Historia =  new ButtonGroup();
-		
-		JRadioButton Historia_si = new JRadioButton("si");
-		Historia_si.setBounds(180, 387, 45, 20);
-		Historia_si.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Historia_si);
-		
-		JRadioButton Historia_no = new JRadioButton("no");
-		Historia_no.setBounds(230, 387, 45, 20);
-		Historia_no.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Historia_no);
-		
-		Grupo_Historia.add(Historia_si);
-		Grupo_Historia.add(Historia_no);
-		
+		Checkbox checkbox_Historia = new Checkbox("");
+		checkbox_Historia.setBounds(145, 426, 25, 30);
+		frame.getContentPane().add(checkbox_Historia);
 		
 		JButton Boton_CrearUsuario = new JButton("Crear usuario");
-		Boton_CrearUsuario.setBounds(70, 418, 137, 24);
+		Boton_CrearUsuario.setBounds(88, 462, 137, 24);
 		Boton_CrearUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		frame.getContentPane().add(Boton_CrearUsuario);
 		
@@ -298,6 +231,7 @@ public class Interfaz {
 				Boton_CrearUsuario.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						/*
 						if(Deportes_si.isSelected()==true){Nuevas_Afinidades[0]=true;}
 						if(Juegos_si.isSelected()==true){Nuevas_Afinidades[1]=true;}
 						if(Series_si.isSelected()==true){Nuevas_Afinidades[2]=true;}
@@ -308,11 +242,12 @@ public class Interfaz {
 						String Nuevo_nombre = Nombre_escrito_Crear.getText();
 						Persona Nuevo_usuario = new Persona(Nuevo_nombre, Nuevas_Afinidades, listaPersonas);
 						System.out.println(Nuevo_usuario.toString());
+						*/
 					}
 				});
 		
 		Canvas Separador_General = new Canvas();
-		Separador_General.setBounds(309, 11, 3, 432);
+		Separador_General.setBounds(309, 11, 3, 455);
 		Separador_General.setBackground(Color.BLACK);
 		Separador_General.setForeground(Color.WHITE);
 		frame.getContentPane().add(Separador_General);
@@ -378,7 +313,5 @@ public class Interfaz {
 		JButton Comprobar_Personal_1 = new JButton("Comprobar");
 		Comprobar_Personal_1.setBounds(517, 203, 89, 23);
 		frame.getContentPane().add(Comprobar_Personal_1);
-		
-
 	}
 }
