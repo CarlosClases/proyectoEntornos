@@ -8,6 +8,8 @@ public class Persona {
 	private String nombre;
 	private boolean[] afinidades = new boolean[7];
 	
+	public Persona() {}
+	
 	public Persona(ArrayList<Persona> listaPersonas) {
 		this.nombre = decidirNombre(listaPersonas);
 		this.afinidades = decidirAfinidades();
@@ -74,7 +76,7 @@ public class Persona {
 		return afinidades;
 	}
 	
-	public void Compatibilidad(Persona Objetivo) {
+	public String Compatibilidad(Persona Objetivo) {
 		int Puntos_en_comun=0;
 		int Longitud_array_afinidades = afinidades.length;
 		for(int i=0; i<Longitud_array_afinidades; i++ ) {
@@ -83,10 +85,10 @@ public class Persona {
 			}
 		}
 		if(Puntos_en_comun >= 3) {
-			System.out.println(this.nombre + " y " + Objetivo.nombre + " son compatibles");
+			return this.nombre + " y " + Objetivo.nombre + " son compatibles";
 		}
 		else {
-			System.out.println(this.nombre + " y " + Objetivo.nombre + " no son compatibles");
+			return this.nombre + " y " + Objetivo.nombre + " no son compatibles";
 		}
 	}
 

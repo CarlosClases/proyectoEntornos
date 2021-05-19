@@ -24,14 +24,17 @@ import java.awt.Canvas;
 import java.awt.Button;
 import javax.swing.ImageIcon;
 import java.awt.Checkbox;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class Interfaz {
 
 	private JFrame frame;
 	private JTextField Nombre_escrito_Crear;
-	private JTextField Nombre_escrito_gestionar;
-	private JTextField Segundo_usuario;
+	private JTextField Nombre_gestionar;
+	private JTextField Segundo_usuario_Gestionar;
 
 	/**
 	 * Launch the application.
@@ -60,7 +63,7 @@ public class Interfaz {
 	 * Initialize the contents of the frame.
 	 */
 	
-	//Metodo para comprobar si un nombre esta repetido
+	//Metodo para comprobar si el usuario no pueda poner un nombre que ya este tomado
 	static boolean NombreRepetido(ArrayList<Persona> listaPersonas, String Nuevo_nombre) {
 		boolean repetido=false;
 		int listaPersona_size = listaPersonas.size();
@@ -83,7 +86,6 @@ public class Interfaz {
 		Persona a3 = new Persona("Francisco", b3, listaPersonas);
 		boolean [] b4 = {false ,false ,false ,false ,false ,false, false};
 		Persona a4 = new Persona("Eurelio", b4, listaPersonas);
-		boolean [] Nuevas_Afinidades = new boolean[7];
 		
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -91,19 +93,19 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel Titulo_1 = new JLabel("CREAR USUARIOS");
-		Titulo_1.setBounds(10, 10, 270, 30);
-		Titulo_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
-		Titulo_1.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(Titulo_1);
+		JLabel Titulo_Crear = new JLabel("CREAR USUARIOS");
+		Titulo_Crear.setBounds(10, 10, 270, 30);
+		Titulo_Crear.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		Titulo_Crear.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(Titulo_Crear);
 		
-		JLabel Nombre_Crear = new JLabel("Nombre de usuario:");
-		Nombre_Crear.setBounds(10, 66, 121, 14);
-		Nombre_Crear.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Nombre_Crear);
+		JLabel Nombre_Etiqueta_Crear = new JLabel("Nombre de usuario:");
+		Nombre_Etiqueta_Crear.setBounds(25, 60, 120, 15);
+		Nombre_Etiqueta_Crear.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		frame.getContentPane().add(Nombre_Etiqueta_Crear);
 		
 		Nombre_escrito_Crear = new JTextField();
-		Nombre_escrito_Crear.setBounds(141, 64, 137, 20);
+		Nombre_escrito_Crear.setBounds(155, 60, 135, 20);
 		Nombre_escrito_Crear.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		frame.getContentPane().add(Nombre_escrito_Crear);
 		Nombre_escrito_Crear.setColumns(10);
@@ -121,6 +123,10 @@ public class Interfaz {
 		Icon_Deportes.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		frame.getContentPane().add(Icon_Deportes);
 		
+		Checkbox checkbox_Deportes = new Checkbox("");
+		checkbox_Deportes.setBounds(50, 220, 25, 30);
+		frame.getContentPane().add(checkbox_Deportes);
+		
 		JLabel Icon_Juegos = new JLabel("");
 		Icon_Juegos.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Juegos.png")));
 		Icon_Juegos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -131,10 +137,6 @@ public class Interfaz {
 		Checkbox checkbox_Juegos = new Checkbox("");
 		checkbox_Juegos.setBounds(150, 220, 25, 30);
 		frame.getContentPane().add(checkbox_Juegos);
-		
-		Checkbox checkbox_Deportes = new Checkbox("");
-		checkbox_Deportes.setBounds(50, 220, 25, 30);
-		frame.getContentPane().add(checkbox_Deportes);
 		
 		JLabel Icon_Series = new JLabel("");
 		Icon_Series.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Series.png")));
@@ -205,113 +207,149 @@ public class Interfaz {
 		Aviso_Nombre.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(Aviso_Nombre);
 		
-		//Comprueba si el nombre esta repetido cada vez que dejamos el campo de texto
 				Nombre_escrito_Crear.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyReleased(KeyEvent e) {
 						String Nuevo_nombre = Nombre_escrito_Crear.getText();
 						String Aviso_texto;
-						if(NombreRepetido(listaPersonas, Nuevo_nombre)) {
-							Aviso_Nombre.setFont(new Font("Times New Roman", Font.BOLD, 12));
-							Aviso_texto = "Nombre no disponible, intruduzca uno nuevo";
+						int Numero_Letras_Nombre = Nuevo_nombre.length();
+						if(Numero_Letras_Nombre < 5) { //Comprueba si el nuevo nombre cumple el minimo de caracteres
+							Aviso_texto = "Minimo de caracteres no alcanzado";
 							Aviso_Nombre.setText(Aviso_texto);
 							Aviso_Nombre.setForeground(Color.red);
 							Boton_CrearUsuario.setEnabled(false);
-
 						}
 						else {
-							Aviso_texto = "Nombre disponible";
-							Aviso_Nombre.setText(Aviso_texto);
-							Aviso_Nombre.setForeground(Color.green);
-							Boton_CrearUsuario.setEnabled(true);
-							
+							if(NombreRepetido(listaPersonas, Nuevo_nombre)) {
+								Aviso_Nombre.setFont(new Font("Times New Roman", Font.BOLD, 12));
+								Aviso_texto = "Nombre no disponible, intruduzca uno nuevo";
+								Aviso_Nombre.setText(Aviso_texto);
+								Aviso_Nombre.setForeground(Color.red);
+								Boton_CrearUsuario.setEnabled(false);
+	
+							}
+							else {
+								Aviso_texto = "Nombre disponible";
+								Aviso_Nombre.setText(Aviso_texto);
+								Aviso_Nombre.setForeground(Color.green);
+								Boton_CrearUsuario.setEnabled(true);
+								
+							}
 						}
 					}
 				});
 				Boton_CrearUsuario.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						/*
-						if(Deportes_si.isSelected()==true){Nuevas_Afinidades[0]=true;}
-						if(Juegos_si.isSelected()==true){Nuevas_Afinidades[1]=true;}
-						if(Series_si.isSelected()==true){Nuevas_Afinidades[2]=true;}
-						if(Animes_si.isSelected()==true){Nuevas_Afinidades[3]=true;}
-						if(Jardineria_si.isSelected()==true){Nuevas_Afinidades[4]=true;}
-						if(Informatica_si.isSelected()==true){Nuevas_Afinidades[5]=true;}
-						if(Historia_si.isSelected()==true){Nuevas_Afinidades[6]=true;}
+						boolean [] Nuevas_Afinidades = new boolean[7];
+						if(checkbox_Deportes.getState()==true){Nuevas_Afinidades[0]=true;}
+						if(checkbox_Juegos.getState()==true){Nuevas_Afinidades[1]=true;}
+						if(checkbox_Series.getState()==true){Nuevas_Afinidades[2]=true;}
+						if(checkbox_Animes.getState()==true){Nuevas_Afinidades[3]=true;}
+						if(checkbox_Jardineria.getState()==true){Nuevas_Afinidades[4]=true;}
+						if(checkbox_Informatica.getState()==true){Nuevas_Afinidades[5]=true;}
+						if(checkbox_Historia.getState()==true){Nuevas_Afinidades[6]=true;}
 						String Nuevo_nombre = Nombre_escrito_Crear.getText();
 						Persona Nuevo_usuario = new Persona(Nuevo_nombre, Nuevas_Afinidades, listaPersonas);
 						System.out.println(Nuevo_usuario.toString());
-						*/
+						Nombre_escrito_Crear.setText("");
+						String Aviso_texto = "Usuario creado correctamente";
+						Aviso_Nombre.setForeground(Color.blue);
+						Aviso_Nombre.setText(Aviso_texto);
+						
 					}
 				});
 		
 		Canvas Separador_General = new Canvas();
-		Separador_General.setBounds(309, 11, 3, 455);
+		Separador_General.setBounds(300, 10, 5, 460);
 		Separador_General.setBackground(Color.BLACK);
 		Separador_General.setForeground(Color.WHITE);
 		frame.getContentPane().add(Separador_General);
 		
-		JLabel Titulo_2 = new JLabel("GESTIONAR USUARIOS");
-		Titulo_2.setBounds(350, 11, 268, 33);
-		Titulo_2.setHorizontalAlignment(SwingConstants.CENTER);
-		Titulo_2.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
-		frame.getContentPane().add(Titulo_2);
+		JLabel Titulo_Gestionar = new JLabel("GESTIONAR USUARIOS");
+		Titulo_Gestionar.setBounds(350, 10, 270, 30);
+		Titulo_Gestionar.setHorizontalAlignment(SwingConstants.CENTER);
+		Titulo_Gestionar.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		frame.getContentPane().add(Titulo_Gestionar);
 		
-		JLabel Nombre_Gestionar = new JLabel("Nombre de usuario:");
-		Nombre_Gestionar.setBounds(339, 66, 121, 14);
-		Nombre_Gestionar.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Nombre_Gestionar);
+		JLabel Nombre_Etiqueta_Gestionar = new JLabel("Nombre de usuario:");
+		Nombre_Etiqueta_Gestionar.setBounds(340, 65, 120, 15);
+		Nombre_Etiqueta_Gestionar.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		frame.getContentPane().add(Nombre_Etiqueta_Gestionar);
 		
-		Nombre_escrito_gestionar = new JTextField();
-		Nombre_escrito_gestionar.setBounds(470, 64, 137, 20);
-		Nombre_escrito_gestionar.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		Nombre_escrito_gestionar.setColumns(10);
-		frame.getContentPane().add(Nombre_escrito_gestionar);
+		Nombre_gestionar = new JTextField();
+		Nombre_gestionar.setBounds(470, 65, 140, 20);
+		Nombre_gestionar.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Nombre_gestionar.setColumns(10);
+		frame.getContentPane().add(Nombre_gestionar);
 		
 		JLabel lblCompatibilidad = new JLabel("Compatibilidad");
-		lblCompatibilidad.setBounds(399, 100, 155, 24);
+		lblCompatibilidad.setBounds(400, 100, 155, 25);
 		lblCompatibilidad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCompatibilidad.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		frame.getContentPane().add(lblCompatibilidad);
 		
-		JLabel Nombre_Gestionar_usu2 = new JLabel("Segundo usuario");
-		Nombre_Gestionar_usu2.setBounds(319, 168, 121, 24);
-		Nombre_Gestionar_usu2.setHorizontalAlignment(SwingConstants.CENTER);
-		Nombre_Gestionar_usu2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		frame.getContentPane().add(Nombre_Gestionar_usu2);
+		JLabel Nombre_Etiqueta_usu2 = new JLabel("Segundo usuario");
+		Nombre_Etiqueta_usu2.setBounds(310, 170, 155, 24);
+		Nombre_Etiqueta_usu2.setHorizontalAlignment(SwingConstants.CENTER);
+		Nombre_Etiqueta_usu2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		frame.getContentPane().add(Nombre_Etiqueta_usu2);
 		
-		Canvas Separador_Compativilidad = new Canvas();
-		Separador_Compativilidad.setBounds(475, 150, 3, 125);
-		Separador_Compativilidad.setForeground(Color.WHITE);
-		Separador_Compativilidad.setBackground(Color.BLACK);
-		frame.getContentPane().add(Separador_Compativilidad);
+		Canvas Separador_Compatibilidad = new Canvas();
+		Separador_Compatibilidad.setBounds(475, 150, 3, 125);
+		Separador_Compatibilidad.setForeground(Color.WHITE);
+		Separador_Compatibilidad.setBackground(Color.BLACK);
+		frame.getContentPane().add(Separador_Compatibilidad);
 		
 		JLabel lblCompatibilidadPersonal = new JLabel("Compatibilidad Personal");
-		lblCompatibilidadPersonal.setBounds(309, 143, 155, 24);
+		lblCompatibilidadPersonal.setBounds(310, 145, 155, 25);
 		lblCompatibilidadPersonal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCompatibilidadPersonal.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
+		lblCompatibilidadPersonal.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		frame.getContentPane().add(lblCompatibilidadPersonal);
 		
-		Segundo_usuario = new JTextField();
-		Segundo_usuario.setBounds(318, 203, 142, 20);
-		Segundo_usuario.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-		Segundo_usuario.setColumns(10);
-		frame.getContentPane().add(Segundo_usuario);
+		Segundo_usuario_Gestionar = new JTextField();
+		Segundo_usuario_Gestionar.setBounds(318, 203, 142, 20);
+		Segundo_usuario_Gestionar.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Segundo_usuario_Gestionar.setColumns(10);
+		frame.getContentPane().add(Segundo_usuario_Gestionar);
 		
-		JLabel lblCompatibilidadPersonal_1_1 = new JLabel("Compatibilidad General");
-		lblCompatibilidadPersonal_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCompatibilidadPersonal_1_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 12));
-		lblCompatibilidadPersonal_1_1.setBounds(489, 143, 155, 24);
-		frame.getContentPane().add(lblCompatibilidadPersonal_1_1);
-		
-		JButton Comprobar_Personal = new JButton("Comprobar \n compatibilidad");
-		Comprobar_Personal.setFont(new Font("Times New Roman", Font.BOLD, 10));
-		Comprobar_Personal.setBounds(318, 234, 151, 46);
+		JButton Comprobar_Personal = new JButton("Comprobar");
+		Comprobar_Personal.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Comprobar_Personal.setBounds(310, 235, 150, 45);
 		frame.getContentPane().add(Comprobar_Personal);
 		
-		JButton Comprobar_Personal_1 = new JButton("Comprobar");
-		Comprobar_Personal_1.setBounds(517, 203, 89, 23);
-		frame.getContentPane().add(Comprobar_Personal_1);
+		JButton Comprobar_General = new JButton("");
+		Comprobar_General.setIcon(new ImageIcon(Interfaz.class.getResource("/iconos/Compatibilidad_General.png")));
+		Comprobar_General.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		Comprobar_General.setBounds(485, 170, 145, 80);
+		frame.getContentPane().add(Comprobar_General);
+		
+		JTextPane Resultados_Compatiblidad = new JTextPane();
+		Resultados_Compatiblidad.setBounds(320, 320, 310, 150);
+		frame.getContentPane().add(Resultados_Compatiblidad);
+		
+		Comprobar_Personal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int listaPersona_size = listaPersonas.size();
+				Boolean cerrojo_1=true, cerrojo_2=true;
+				String Nombre_Usu_Primero = Nombre_gestionar.getText();
+				String Nombre_Usu_Segundo = Segundo_usuario_Gestionar.getText();
+				Persona Primer_usuario = new Persona();
+				Persona	Segundo_usuario = new Persona();
+				//Busca a los dos usuarios en el ArrayList
+				for (int i = 0; i < listaPersona_size || (cerrojo_1 && cerrojo_2); i++) {
+					if (listaPersonas.get(i).getNombre().equals(Nombre_Usu_Primero)) { //Busqueda del primer usuario
+						Primer_usuario = listaPersonas.get(i);
+						cerrojo_1=false;
+					}
+					if (listaPersonas.get(i).getNombre().equals(Nombre_Usu_Segundo)) {//Busqueda del segundo usuario
+						Segundo_usuario = listaPersonas.get(i);
+						cerrojo_2=false;
+					}
+				}
+				System.out.println(Segundo_usuario.toString());
+				Resultados_Compatiblidad.setText(Primer_usuario.Compatibilidad(Segundo_usuario));
+			}
+		});
 	}
 }
