@@ -10,18 +10,20 @@ public class Persona {
 	
 	public Persona() {}
 	
+	/* NO SE USA
 	public Persona(ArrayList<Persona> listaPersonas) {
 		this.nombre = decidirNombre(listaPersonas);
 		this.afinidades = decidirAfinidades();
 		listaPersonas.add(this);
 	}
-	
+	*/
 	public Persona(String nombre, boolean[] afinidades, ArrayList<Persona> listaPersonas) {
 		this.nombre = nombre;
 		this.afinidades = afinidades;
 		listaPersonas.add(this);
 	}
 	
+	/* NO TE USA
 	private String decidirNombre(ArrayList<Persona> listaPersonas) {//Metodo para que el usuario no pueda repetir nombre
 		boolean cerrojo=true;
 		System.out.println("¡Escribe un nombre unico para tu usuario!");
@@ -39,7 +41,9 @@ public class Persona {
 		
 		return nombre;
 	}
-
+	*/
+	
+	/* NO SE USA
 	public boolean ResponderSINO() {//Impide al usuario responder cualquier cosa que no sea si o no, devolviendo si le gusta o no
 		boolean sino=true;
 		String respuesta=tec.nextLine();
@@ -54,7 +58,9 @@ public class Persona {
 		}
 		return sino;
 	}
+	*/
 	
+	/* NO SE USA
 	public boolean[] decidirAfinidades() {//Crea el array de los gustos Personales
 		boolean[] afinidades = new boolean[7];
 		
@@ -75,7 +81,9 @@ public class Persona {
 			
 		return afinidades;
 	}
+	*/
 	
+	//SE USA
 	public String Compatibilidad(Persona Objetivo) {
 		int Puntos_en_comun=0;
 		int Longitud_array_afinidades = afinidades.length;
@@ -92,13 +100,14 @@ public class Persona {
 		}
 	}
 
-	
+	/* NO SE USA
 	public void CompatibilidadGlobal(ArrayList<Persona> listaPersonas) {
 		int Longitud_arraylist_personas = listaPersonas.size();
 		for(int j=0; j<Longitud_arraylist_personas; j++) {
 			this.Compatibilidad(listaPersonas.get(j));
 		}
 	}
+	*/
 	
 	public String toString() {
 		return "Nombre: "+nombre+"\n"+
