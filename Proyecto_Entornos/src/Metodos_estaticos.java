@@ -8,8 +8,24 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+/**
+ * <h2>Clase Metodos_estaticos</h2> Esta clase contiene metodos estaticos
+ *
+ * @author Daniel y Carlos
+ * @version 9.5
+ *
+ */
 public class Metodos_estaticos {
-	//Metodo para comprobar si el usuario no pueda poner un nombre que ya este tomado
+	
+	/**
+	 *
+	 * @return listaPersonas Indica la lista de las personas donde se busca si hay
+	 *         una persona con el mismo nombre
+	 *
+	 * @return Nuevo_nombre Indica el nombre con el que se compara con otros nombres
+	 *         de la listaPersona
+	 * 
+	 */
 	static boolean NombreRepetido(ArrayList<Persona> listaPersonas, String Nuevo_nombre) {
 		boolean repetido=false;
 		int listaPersona_size = listaPersonas.size();
@@ -21,6 +37,18 @@ public class Metodos_estaticos {
 		return repetido;
 	}
 	
+	/**
+	 *
+	 * @param listaPersonas        Indica la lista de las personas
+	 *
+	 * @param Nombre_escrito_Crear Indica el nombre de la persona al que se compueba
+	 *                             si tiene un minimo de caracteres
+	 * 
+	 * @param Aviso_Nombre         Indica el mensaje del aviso
+	 * 
+	 * @param Boton_CrearUsuario   Es el boton para crear usuarios
+	 * 
+	 */
 	static void Comprobar_Nombre(ArrayList<Persona> listaPersonas,
 								 JTextField Nombre_escrito_Crear,
 								 JLabel Aviso_Nombre,
@@ -51,6 +79,32 @@ public class Metodos_estaticos {
 		}
 	}
 	
+	/**
+	 *
+	 *
+	 * @param checkbox_Deportes    Indica si le gustan los deportes
+	 *
+	 * @param checkbox_Juegos      Indica si le gustan los juegos
+	 * 
+	 * @param checkbox_Animes      Indica si le gustan los animes
+	 * 
+	 * @param checkbox_Jardineria  Indica si le gustan los jardineria
+	 * 
+	 * @param checkbox_Informatica Indica si le gustan los informatica
+	 * 
+	 * @param checkbox_Historia    Indica si le gustan los historia
+	 * 
+	 * @param Nombre_escrito_Crear Nombre que tiene una persona
+	 * 
+	 * @param ArrayList<Persona>   listaPersonas Lista de las personas a la que se
+	 *                             anyade la persona
+	 * 
+	 * @param Aviso_Nombre         Indica el mensaje del aviso
+	 * 
+	 * @param Boton_CrearUsuario   Es el boton para crear usuarios
+	 * 
+	 * 
+	 */
 	static void Crear_usuario(Checkbox checkbox_Deportes,
 							  Checkbox checkbox_Juegos,
 							  Checkbox checkbox_Series,
@@ -80,6 +134,19 @@ public class Metodos_estaticos {
 		Boton_CrearUsuario.setEnabled(false);
 	}
 	
+	/**
+	 *
+	 * @param listaPersonas             Indica la lista de las personas
+	 *
+	 * @param Nombre_gestionar          Indica el nombre de la persona con la que se
+	 *                                  compara
+	 * 
+	 * @param Segundo_usuario_Gestionar Indica el otro nombre de la persona con la
+	 *                                  que se compara
+	 * 
+	 * @param Resultados_Compatiblidad  Indica si es afin o no a la otra persona
+	 * 
+	 */
 	static void Compatibilidad_Individual(ArrayList<Persona> listaPersonas,
 								 		  JTextField Nombre_gestionar,
 								 		  JTextField Segundo_usuario_Gestionar,
@@ -104,6 +171,17 @@ public class Metodos_estaticos {
 		Resultados_Compatiblidad.setText(Primer_usuario.Compatibilidad(Segundo_usuario));
 	}
 	
+	
+	/**
+	 *
+	 * @param listaPersonas            Indica la lista de las personas
+	 *
+	 * @param Nombre_gestionar         Indica el nombre de la persona con la que se
+	 *                                 compara
+	 * 
+	 * @param Resultados_Compatiblidad Indica si es afin o no a la otra persona
+	 * 
+	 */
 	static void Compatibilidad_General(ArrayList<Persona> listaPersonas,
 	 		  						   JTextField Nombre_gestionar,
 	 		  						   JTextPane Resultados_Compatiblidad) {
