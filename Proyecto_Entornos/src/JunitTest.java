@@ -10,16 +10,16 @@ import org.junit.jupiter.api.Test;
 
 class JunitTest {
 	
-	private static Persona a, a2;
+	private static Persona Persona_Prueba1, Persona_Prueba2;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
 		
-		boolean [] b = {true ,true ,true ,true ,true ,false, false};
-		a = new Persona("admin", b, listaPersonas);
-		boolean [] b2 = {true ,true ,true ,true ,true ,true, true};
-		a2 = new Persona("Paco", b2, listaPersonas);
+		boolean [] Afinidades_Prueba1 = {true ,true ,true ,true ,true ,false, false};
+		Persona_Prueba1 = new Persona("admin", Afinidades_Prueba1, listaPersonas);
+		boolean [] Afinidades_Prueba2 = {true ,true ,true ,true ,true ,true, true};
+		Persona_Prueba2 = new Persona("Paco", Afinidades_Prueba2, listaPersonas);
 	}
 
 	@AfterAll
@@ -36,8 +36,8 @@ class JunitTest {
 
 	@Test
 	void testAfinidad() {
-		a.Compatibilidad(a2);
-		assertEquals(a.getNombre() + " y " + a2.getNombre() + " son compatibles",a.Compatibilidad(a2));
+		Persona_Prueba1.Compatibilidad(Persona_Prueba2);
+		assertEquals(Persona_Prueba1.getNombre() + " y " + Persona_Prueba2.getNombre() + " son compatibles",Persona_Prueba1.Compatibilidad(Persona_Prueba2));
 	}
 
 }

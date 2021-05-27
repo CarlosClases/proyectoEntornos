@@ -20,12 +20,19 @@ public class Persona {
 	 */
 	private String nombre;
 	/**
+	 * Atributo Numero_Aficiones
+	 *
+	 * Indica el numero de afinidades
+	 *
+	 */
+	private static int Numero_Aficiones = 7;
+	/**
 	 * Atributo afinidades
 	 *
 	 * Indica las afinidades de una persona
 	 *
 	 */
-	private boolean[] afinidades = new boolean[7];
+	private boolean[] afinidades = new boolean[Numero_Aficiones];
 
 	/**
 	 *
@@ -61,7 +68,7 @@ public class Persona {
 		int Puntos_en_comun = 0;
 		int Longitud_array_afinidades = afinidades.length;
 		for (int i = 0; i < Longitud_array_afinidades; i++) {
-			if (this.afinidades[i] == Objetivo.afinidades[i]) {
+			if (this.afinidades[i]==true && this.afinidades[i] == Objetivo.afinidades[i]) {
 				Puntos_en_comun++;
 			}
 		}

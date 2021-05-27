@@ -288,6 +288,7 @@ public class Interfaz {
 		frame.getContentPane().add(Comprobar_General);
 		
 		JTextPane Resultados_Compatiblidad = new JTextPane();
+		Resultados_Compatiblidad.setEditable(false);
 		Resultados_Compatiblidad.setBounds(320, 320, 310, 150);
 		frame.getContentPane().add(Resultados_Compatiblidad);
 		

@@ -58,7 +58,7 @@ public class Metodos_estaticos {
 		String Aviso_texto;
 		int Numero_Letras_Nombre = Nuevo_nombre.length();
 		if (Numero_Letras_Nombre < 5) { // Comprueba si el nuevo nombre cumple el minimo de caracteres
-			Aviso_texto = "Minimo de caracteres no alcanzado";
+			Aviso_texto = "Introduzca al menos 5 caracteres";
 			Aviso_Nombre.setText(Aviso_texto);
 			Aviso_Nombre.setForeground(Color.red);
 			Boton_CrearUsuario.setEnabled(false);
